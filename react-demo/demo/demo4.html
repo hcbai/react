@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+
+    <script type="text/babel">
+        let Message = React.createClass({
+            render(){
+                return <h1>hi,{this.props.name}</h1>
+            }
+        })
+        
+        ReactDOM.render(          
+            <Message name="lisa" />,
+            document.getElementById('root')
+        )
+    
+    </script>
+</body>
+</html>
