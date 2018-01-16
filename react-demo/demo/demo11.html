@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        let Message = React.createClass({
+            getInitialState(){
+                return {
+                    ownerLogin:'',
+                    comments:''
+                }
+            },
+            componentDidMount(){
+                fetch(this.props.source).then(result => result.json()).then(result => {
+                    console.log(result);
+                    let data = result[0];
+                    if(this.isMounted()){
+                        this.setState({
+                            ownerLogin : data.owner.login,
+                            comments : data.comments
+                        })
+                    }
+                })
+            },
+            render(){
+                return (
+                    <div>
+                        <p>{this.state.ownerLogin}</p>
+                        <p>{this.state.comments}</p>
+                    </div>
+                )
+            }
+        });
+
+        ReactDOM.render(
+            <Message source="https://api.github.com/users/octocat/gists"/>,
+            document.getElementById('app')
+        )
+
+
+    </script>
+</body>
+</html>

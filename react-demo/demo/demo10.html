@@ -10,10 +10,45 @@
     <script src="../build/browser.min.js"></script>
 </head>
 <body>
+
     <div id="root"></div>
 
     <script type="text/babel">
-    
+        let Message = React.createClass({
+            getInitialState(){
+                return {
+                    opacity:1,
+                    name:'初见'
+                }
+            },
+            componentDidMount(){
+                this.timer = setInterval(()=>{
+                    let opacity = this.state.opacity;
+                    opacity -= 0.05;
+                    if(opacity<0.1){
+                        opacity = 1;
+                    }
+                    this.setState({
+                        opacity:opacity
+                    });
+                },100)
+            },
+            clearTimer(){
+              clearInterval(this.timer);
+            },
+            render(){
+                return (
+                    <div style={{opacity:this.state.opacity}} onClick={this.clearTimer}>
+                        hello {this.props.name} {this.state.name}
+                    </div>
+                )
+            }
+        });
+        let name = '木白';
+        ReactDOM.render(
+            <Message name={name}/>,
+            document.getElementById('root')
+        )
     
     
     </script>
