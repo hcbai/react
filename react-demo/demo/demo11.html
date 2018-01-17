@@ -10,25 +10,58 @@
 <body>
     <div id="app"></div>
     <script type="text/babel">
-        let Message = React.createClass({
-            getInitialState(){
-                return {
+        // let Message = React.createClass({
+        //     getInitialState(){
+        //         return {
+        //             ownerLogin:'',
+        //             comments:''
+        //         }
+        //     },
+        //     componentDidMount(){
+        //         fetch(this.props.source).then(result => result.json()).then(result => {
+        //             console.log(result);
+        //             let data = result[0];
+        //             if(this.isMounted()){
+        //                 this.setState({
+        //                     ownerLogin : data.owner.login,
+        //                     comments : data.comments
+        //                 })
+        //             }
+        //         })
+        //     },
+        //     render(){
+        //         return (
+        //             <div>
+        //                 <p>{this.state.ownerLogin}</p>
+        //                 <p>{this.state.comments}</p>
+        //             </div>
+        //         )
+        //     }
+        // });
+
+        class Message extends React.Component{
+            constructor(props){
+                super(props);
+                // this.mounted = true;    
+                this.state = {
                     ownerLogin:'',
                     comments:''
                 }
-            },
+            };
             componentDidMount(){
-                fetch(this.props.source).then(result => result.json()).then(result => {
-                    console.log(result);
-                    let data = result[0];
-                    if(this.isMounted()){
+                fetch(this.props.source).then(ref => ref.json()).then(ref => {
+                    let data = ref[0];
+                    // if(this.isMounted()){
                         this.setState({
-                            ownerLogin : data.owner.login,
-                            comments : data.comments
+                            ownerLogin:data.owner.login,
+                            comments:data.comments
                         })
-                    }
+                    // }
                 })
-            },
+            };
+            // componentWillMount(){
+            //     this.mounted = false
+            // };
             render(){
                 return (
                     <div>
@@ -37,7 +70,9 @@
                     </div>
                 )
             }
-        });
+        }
+
+
 
         ReactDOM.render(
             <Message source="https://api.github.com/users/octocat/gists"/>,

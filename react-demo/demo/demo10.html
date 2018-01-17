@@ -14,36 +14,72 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        let Message = React.createClass({
-            getInitialState(){
-                return {
-                    opacity:1,
-                    name:'初见'
+        // let Message = React.createClass({
+        //     getInitialState(){
+        //         return {
+        //             opacity:1,
+        //             name:'初见'
+        //         }
+        //     },
+        //     componentDidMount(){
+        //         this.timer = setInterval(()=>{
+        //             let opacity = this.state.opacity;
+        //             opacity -= 0.05;
+        //             if(opacity<0.1){
+        //                 opacity = 1;
+        //             }
+        //             this.setState({
+        //                 opacity:opacity
+        //             });
+        //         },100)
+        //     },
+        //     clearTimer(){
+        //       clearInterval(this.timer);
+        //     },
+        //     render(){
+        //         return (
+        //             <div style={{opacity:this.state.opacity}} onClick={this.clearTimer}>
+        //                 hello {this.props.name} {this.state.name}
+        //             </div>
+        //         )
+        //     }
+        // });
+
+        class Message extends React.Component{
+            constructor(props) {
+                super(props);
+                this.state = {
+                    name : props.name,
+                    opacity : 1
                 }
-            },
-            componentDidMount(){
+            };
+            componentDidMount() {
                 this.timer = setInterval(()=>{
                     let opacity = this.state.opacity;
                     opacity -= 0.05;
-                    if(opacity<0.1){
-                        opacity = 1;
+                    if(opacity < 0.1) {
+                        opacity = 1
                     }
-                    this.setState({
-                        opacity:opacity
-                    });
+                    this.setState({opacity:opacity})
                 },100)
-            },
+            };
             clearTimer(){
-              clearInterval(this.timer);
-            },
+                clearInterval(this.timer);
+                this.setState({opacity:1})
+            };
             render(){
                 return (
-                    <div style={{opacity:this.state.opacity}} onClick={this.clearTimer}>
+                    <div style={{opacity:this.state.opacity}} onClick={this.clearTimer.bind(this)}>
                         hello {this.props.name} {this.state.name}
                     </div>
                 )
             }
-        });
+        }
+        Message.defaultProps = {
+            name : '初识'
+        }
+
+        
         let name = '木白';
         ReactDOM.render(
             <Message name={name}/>,

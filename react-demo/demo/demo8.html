@@ -13,25 +13,43 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        let Message = React.createClass({
+        // let Message = React.createClass({
+        //     render(){
+        //         let test = this.state.liked?'like':'haven\'t liked';
+        //         return (
+        //             <p onClick={this.inputClick}>
+        //                 Your {test} this.Click to toggle
+        //             </p>
+        //         )
+        //     },
+        //     getInitialState(){
+        //         return {
+        //             liked:false
+        //         }
+        //     },
+        //     inputClick(){
+        //         // this.state.liked = !this.state.liked
+        //         this.setState({liked : !this.state.liked})
+        //     }
+        // })
+
+        class Message extends React.Component {
+            constructor(){
+                super();
+                this.state = {liked:false}
+            };
+            inputClick(){
+                this.setState({liked : !this.state.liked})
+            };
             render(){
                 let test = this.state.liked?'like':'haven\'t liked';
                 return (
-                    <p onClick={this.inputClick}>
+                    <p onClick={this.inputClick.bind(this)}>
                         Your {test} this.Click to toggle
                     </p>
                 )
-            },
-            getInitialState(){
-                return {
-                    liked:false
-                }
-            },
-            inputClick(){
-                // this.state.liked = !this.state.liked
-                this.setState({liked : !this.state.liked})
-            }
-        })
+            };
+        };
         
         ReactDOM.render(
             <Message />,

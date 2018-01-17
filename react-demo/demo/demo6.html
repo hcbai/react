@@ -13,22 +13,50 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        let Message = React.createClass({
-            propTypes:{
-                //.isRequired 表示不可为空
-                title : React.PropTypes.string.isRequired 
-            },
-            getDefaultProps(){
-                return {
-                    title : '相见'
-                }
-            },
+        // let Message = React.createClass({
+        //     propTypes:{
+        //         //.isRequired 表示不可为空
+        //         title : React.PropTypes.number.isRequired 
+        //     },
+        //     getDefaultProps(){
+        //         return {
+        //             title : 1
+        //         }
+        //     },
+        //     render(){
+        //         return <h1>{this.props.title}</h1>
+        //     }
+        // })
+
+        class Message extends React.Component {
+            constructor(props){
+                super(props);
+                this.name = 'bai';
+                this.numChange = this.numChange.bind(this);
+                this.state = {title:props.title}
+            };
+            numChange(){
+                this.setState({title:this.state.title + 1})
+            };
             render(){
-                return <h1>{this.props.title}</h1>
+                return (
+                    <div>
+                        <p onClick={this.numChange.bind(this)}>{this.state.title}</p>
+                        <p onClick={()=>this.numChange()}>{this.state.title}</p>
+                        <p onClick={this.numChange}>{this.state.title}</p>
+                        <p>{this.name}</p>
+                    </div>
+                )
             }
-        })
+        };
+        Message.propTypes = {
+            title : React.PropTypes.number.isRequired
+        };
+        Message.defaultProps = {
+            title : 1
+        };
     
-        let data = '初见';
+        let data = 123;
 
         ReactDOM.render(
             <Message title={data} />,

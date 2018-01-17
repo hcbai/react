@@ -121,14 +121,15 @@ render(){
     fetch(this.props.source).then(result => result.json()).then(result => {
         console.log(result);
         let data = result[0];
-        if(this.isMounted()){
+        //if(this.isMounted()){
             this.setState({
                 ownerLogin : data.owner.login,
                 comments : data.comments
             })
-        }
+        //}
     })
 }`
+### 注意：`isMounted()`这个方法已经被react废弃掉了
 
 ## 也可以将一个promise对象传入组件
 ` <Message promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')}/>`
@@ -139,6 +140,42 @@ render(){
         error => this.setState({loading: false, error: error})
     );
 }`
+
+## 使用ES6的class类来代替`React.createClass` , `class Message extends React.Component`
+
+## 使用ES6 class与React.createClass的不同：
+1. React.createClass提供getInitialState 方法，而ES6 class在构造函数里设置初始的state；
+2. React.createClass提供getDefaultProps方法和propTypes 属性，而propTypes 和 defaultProps 在ES6 class的构造函数里被定义为属性，而不是在class body里。
+3. ES6 class中不会自动绑定this到实例上，必须显示的使用.bind(this) 或使用箭头函数 =>:
+
+###ES6中class指向有三种解决方法
+1. 绑定this `<p onClick={this.numChange.bind(this)}>{this.state.title}</p>`
+2. 箭头函数 => `<p onClick={()=>this.numChange()}>{this.state.title}</p>`，也可以改函数
+3. 1.在构造函数中绑定事件处理 
+`constructor(props){
+    super(props);
+    this.numChange = this.numChange.bind(this)
+};`
+   2.这样就可以直接使用 `<p onClick={this.numChange}>{this.state.title}</p>`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

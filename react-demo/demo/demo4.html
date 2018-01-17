@@ -14,11 +14,22 @@
     
 
     <script type="text/babel">
-        let Message = React.createClass({
+        // let Message = React.createClass({
+        //     render(){
+        //         return <h1>hi,{this.props.name}</h1>
+        //     }
+        // })
+        
+        //使用ES6语法
+        class Message extends React.Component {
             render(){
-                return <h1>hi,{this.props.name}</h1>
+                return (
+                    <h1>hi,{this.props.name}</h1>
+                )
             }
-        })
+        }
+        
+
         
         ReactDOM.render(          
             <Message name="lisa" />,

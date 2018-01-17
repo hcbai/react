@@ -13,7 +13,25 @@
     <div id="root"></div>
     
     <script type="text/babel">
-        let MyComponent = React.createClass({
+        // let MyComponent = React.createClass({
+        //     render(){
+        //         return (
+        //             <div>
+        //                 <input type="text" ref="inputText"/>
+        //                 <input type="button" onClick={this.inputClick} value="请输入"/>
+        //             </div>
+        //         )
+        //     },
+        //     inputClick(){
+        //         this.refs.inputText.focus();
+        //     }
+        // })
+
+        class MyComponent extends React.Component{
+            constructor() {
+                super();
+                this.inputClick = this.inputClick.bind(this)
+            };
             render(){
                 return (
                     <div>
@@ -21,11 +39,11 @@
                         <input type="button" onClick={this.inputClick} value="请输入"/>
                     </div>
                 )
-            },
+            };
             inputClick(){
                 this.refs.inputText.focus();
             }
-        })
+        };
         
         ReactDOM.render(
             <MyComponent />,

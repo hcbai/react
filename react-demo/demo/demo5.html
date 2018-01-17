@@ -13,7 +13,22 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        let NotesList = React.createClass({
+        // let NotesList = React.createClass({
+        //     render(){
+        //         return (
+        //             <ol>
+        //                 {
+        //                     React.Children.map(this.props.children,child => {
+        //                         return <li>{child}</li>
+        //                     })                          
+        //                 } 
+        //                 <li>{this.props.children}</li>
+        //             </ol>
+        //         )
+        //     }
+        // })
+
+        class NotesList extends React.Component {
             render(){
                 return (
                     <ol>
@@ -26,7 +41,7 @@
                     </ol>
                 )
             }
-        })
+        }
 
         ReactDOM.render(
             <NotesList>

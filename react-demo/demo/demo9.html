@@ -13,26 +13,44 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        let Message = React.createClass({
-            getInitialState(){
-                return {value:'木'}
-            },
+        // let Message = React.createClass({
+        //     getInitialState(){
+        //         return {value:'木'}
+        //     },
+        //     myChange(e){
+        //         // console.log(e.target);
+        //         this.setState({value : e.target.value})
+        //     },
+        //     render(){
+        //         return (
+        //             <div>
+        //                 <input type="text" onChange={this.myChange} value={this.state.value}/>
+        //                 <p>{this.state.value}</p>
+        //             </div>
+        //         )
+        //     }
+        // })
+        
+        class Message extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {value : props.title}
+            };
             myChange(e){
-                // console.log(e.target);
                 this.setState({value : e.target.value})
-            },
+            };
             render(){
                 return (
                     <div>
-                        <input type="text" onChange={this.myChange} value={this.state.value}/>
+                        <input type="text" onChange={this.myChange.bind(this)} value={this.state.value}/>
                         <p>{this.state.value}</p>
                     </div>
                 )
             }
-        })
-        
+        };
+
         ReactDOM.render(
-            <Message />,
+            <Message title="asdf"/>,
             document.getElementById('root')
         )
     
