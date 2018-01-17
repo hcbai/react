@@ -76,7 +76,7 @@ getInitialState(){
         liked:false
     }
 },
-inputClick(event){
+inputClick(){
     this.setState({liked : !this.state.liked})
 }
 `
